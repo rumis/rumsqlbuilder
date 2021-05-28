@@ -2330,7 +2330,6 @@ class Builder
      * Insert a new record into the database.
      *
      * @param  array  $values
-     * @return bool
      */
     public function insert(array $values)
     {
@@ -2358,20 +2357,19 @@ class Builder
         // the query so they are all in one huge, flattened array for execution.
         $sql =    $this->grammar->compileInsert($this, $values);
         $vals =   $this->cleanBindings(Arr::flatten($values, 1));
-        return $this->buildStorage($sql, $vals);
+        return ['sql' => $sql, 'params' => $vals];
     }
 
     /**
      * Update a record in the database.
      *
      * @param  array  $values
-     * @return int
      */
     public function update(array $values)
     {
         $sql = $this->grammar->compileUpdate($this, $values);
         $params = $this->cleanBindings($this->grammar->prepareBindingsForUpdate($this->bindings, $values));
-        return $this->buildStorage($sql, $params);
+        return ['sql' => $sql, 'params' => $params];
     }
 
     /**

@@ -15,3 +15,5 @@ if (!file_exists(SYS_ROOTDIR . '../vendor/autoload.php')) {
 }
 //加载autoload
 require_once(SYS_ROOTDIR . '../vendor/autoload.php');
+//加载方法集
+require_once(SYS_ROOTDIR . '../src/helpers.php');
